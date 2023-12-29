@@ -120,7 +120,7 @@ try {
     Write-Host "Battery 2:"
     Write-Host "  Type: $($health2.Type)"
     Write-Host "  Design Capacity: $($health2.DesignCapacity) mWh"
-    Write-Host "  Full Charge Capacity: $($health.2FullChargeCapacity) mWh"
+    Write-Host "  Full Charge Capacity: $($health2.FullChargeCapacity) mWh"
     Write-Host "  Max Capacity: $($health2.MaxCapacity)%"
     Write-Host "  Failure Capacity: $($health2.FailureCapacity)%"
     Write-Host ""
