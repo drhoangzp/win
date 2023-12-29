@@ -78,6 +78,23 @@ $processor | ForEach-Object {
     # Hiển thị thông tin trong bảng
     $_ | Select-Object @{Name='Processor Name'; Expression={$processorName}}, @{Name='Cores'; Expression={$numberOfCores}}, @{Name='Threads'; Expression={$numberOfLogicalProcessors}}
 } | Format-Table
+# Lấy thông tin về GPU
+$videoControllers = Get-CimInstance Win32_VideoController
+
+# Hiển thị thông tin về GPU trong bảng
+$videoControllers | ForEach-Object {
+    $gpuName = $_.Caption
+    $driverVersion = $_.DriverVersion
+    $videoProcessor = $_.VideoProcessor
+    $adapterRAMGB = [math]::round($_.AdapterRAM / 1GB, 2)
+    
+    Write-Host "GPU Information:"
+    Write-Host "  GPU Name: $($gpuName)"
+    Write-Host "  Driver Version: $($driverVersion)"
+    Write-Host "  Video Processor: $($videoProcessor)"
+    Write-Host "  Adapter RAM: $($adapterRAMGB) GB"
+} | Format-Table
+Write-Host ""
 
 # Lấy thông tin về card mạng có địa chỉ IP
 $networkAdapters = Get-CimInstance Win32_NetworkAdapterConfiguration | Where-Object { $_.IPAddress -ne $null }
