@@ -91,7 +91,6 @@ try {
 
 } catch {
     $health1 = [pscustomobject]@{
-        Time               = $battery.BatteryReport.ReportInformation.ScanTime;
         Type               = $battery.BatteryReport.Batteries.Battery.Id[0];
         Manufacturer       = $battery.BatteryReport.Batteries.Battery.Manufacturer[0];
         ManufactureDate    = $battery.BatteryReport.Batteries.Battery.ManufactureDate[0];
