@@ -1,5 +1,7 @@
 powercfg /batteryreport /xml /output batteryreport.xml
 
+$bios = Get-WmiObject -Class Win32_BIOS
+
 $battery = [xml](Get-Content batteryreport.xml)
 
 try {
@@ -23,6 +25,7 @@ try {
     Write-Host "Manufacturer: $($health.Manufacturer)"
     Write-Host "Manufacture Date: $($health.ManufactureDate)"
     Write-Host "Serial Number: $($health.SerialNumber)"
+    Write-Host "Serial Number of Laptop: $($bios.SerialNumber)"
     Write-Host "Design Capacity: $($health.DesignCapacity) mWh"
     Write-Host "Full Charge Capacity: $($health.FullChargeCapacity) mWh"
     Write-Host "Cycle Count: $($health.CycleCount)"
@@ -66,6 +69,7 @@ try {
     Write-Host "Manufacturer: $($health1.Manufacturer)"
     Write-Host "Manufacture Date: $($health1.ManufactureDate)"
     Write-Host "Serial Number: $($health1.SerialNumber)"
+    Write-Host "Serial Number of Laptop: $($bios.SerialNumber)"
     Write-Host "Design Capacity: $($health1.DesignCapacity) mWh"
     Write-Host "Full Charge Capacity: $($health1.FullChargeCapacity) mWh"
     Write-Host "Cycle Count: $($health1.CycleCount)"
