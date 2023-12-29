@@ -32,7 +32,7 @@ try {
     Write-Host "Max Capacity: $($health.MaxCapacity)%"
     Write-Host "Failure Capacity: $($health.FailureCapacity)%"
     Write-Host ""
-    Write-Host "From mhqb365.com with Love"
+    Write-Host "From hoang with Love"
     Write-Host ""
 
 } catch {
@@ -89,7 +89,7 @@ try {
     Write-Host "Max Capacity: $($health2.MaxCapacity)%"
     Write-Host "Failure Capacity: $($health2.FailureCapacity)%"
     Write-Host ""
-    Write-Host "From mhqb365.com with Love"
+    Write-Host "From hoang with Love"
     Write-Host ""
 }
 
