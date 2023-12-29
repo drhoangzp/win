@@ -18,6 +18,8 @@ Write-Host "Serial Number: $($bios.SerialNumber)"
 Write-Host ""
 Write-Host "Operating System: $($systemInfo.Caption)"
 Write-Host ""
+Write-Host ""
+Write-Host "RAM :"
 # Lấy thông tin về bộ nhớ vật lý
 $physicalMemory = Get-WmiObject -Class Win32_PhysicalMemory
 
@@ -31,7 +33,7 @@ $physicalMemory | ForEach-Object {
     
     $_ | Select-Object DeviceLocator, PartNumber, @{Name='Capacity'; Expression={$capacityText}}, Speed, @{Name='MemoryType'; Expression={$memoryTypeText}}
 } | Format-Table
-Write-Host ""
+Write-Host "ROM"
 
 # Lấy thông tin về ổ cứng
 $diskDrive = Get-CimInstance Win32_DiskDrive
@@ -46,7 +48,7 @@ $diskDrive | ForEach-Object {
     $_ | Select-Object @{Name='Model'; Expression={$model}}, @{Name='Type'; Expression={$type}}, @{Name='Capacity (GB)'; Expression={$capacityGB}}
 } | Format-Table
 
-Write-Host ""
+Write-Host "CPU :"
 # Lấy thông tin về bộ xử lý
 $processor = Get-CimInstance Win32_Processor
 
