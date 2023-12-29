@@ -17,9 +17,6 @@ try {
     }
 
     Write-Host ""
-    Write-Host "bBattery"
-    Write-Host "github.com/mhqb365/bbatery"
-    Write-Host ""
     Write-Host "Time: $($health.Time)"
     Write-Host ""
     Write-Host "Type: $($health.Type)"
@@ -61,9 +58,6 @@ try {
         CycleCount         = $battery.BatteryReport.Batteries.Battery.CycleCount[1];
     }
 
-    Write-Host ""
-    Write-Host "bBattery"
-    Write-Host "github.com/mhqb365/bbatery"
     Write-Host ""
     Write-Host "Time: $($health1.Time)"
     Write-Host ""
