@@ -33,8 +33,12 @@ Write-Host ""
 # Lấy thông tin về BIOS
 $BIOS = Get-CimInstance Win32_BIOS
 
-# Hiển thị thông tin về BIOS
-Write-Host "BIOS Version: $($BIOS.Version)"
+# Kết hợp thông tin về BIOS Version và Release Date vào một chuỗi
+$biosInfo = "BIOS Version: $($BIOS.Manufacturer) $($BIOS.Version), $($BIOS.ReleaseDate)"
+
+# Hiển thị thông tin về BIOS giống như trong msinfo32
+Write-Host $biosInfo
+
 Write-Host ""
 Write-Host "RAM :"
 # Lấy thông tin về bộ nhớ vật lý
