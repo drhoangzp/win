@@ -73,7 +73,6 @@ $battery = [xml](Get-Content batteryreport.xml)
 
 try {
     $health = [pscustomobject]@{
-        Time               = $battery.BatteryReport.ReportInformation.ScanTime;
         Type               = $battery.BatteryReport.Batteries.Battery.Id;
         DesignCapacity     = $battery.BatteryReport.Batteries.Battery.DesignCapacity;
         FullChargeCapacity = $battery.BatteryReport.Batteries.Battery.FullChargeCapacity;
@@ -92,26 +91,18 @@ try {
 } catch {
     $health1 = [pscustomobject]@{
         Type               = $battery.BatteryReport.Batteries.Battery.Id[0];
-        Manufacturer       = $battery.BatteryReport.Batteries.Battery.Manufacturer[0];
-        ManufactureDate    = $battery.BatteryReport.Batteries.Battery.ManufactureDate[0];
-        SerialNumber       = $battery.BatteryReport.Batteries.Battery.SerialNumber[0];
         DesignCapacity     = $battery.BatteryReport.Batteries.Battery.DesignCapacity[0];
         FullChargeCapacity = $battery.BatteryReport.Batteries.Battery.FullChargeCapacity[0];
         MaxCapacity        = $battery.BatteryReport.Batteries.Battery.FullChargeCapacity[0] / $battery.BatteryReport.Batteries.Battery.DesignCapacity[0] * 100
         FailureCapacity    = 100 - ($battery.BatteryReport.Batteries.Battery.FullChargeCapacity[0] / $battery.BatteryReport.Batteries.Battery.DesignCapacity[0] * 100);
-        CycleCount         = $battery.BatteryReport.Batteries.Battery.CycleCount[0];
     }
 
     $health2 = [pscustomobject]@{
         Type               = $battery.BatteryReport.Batteries.Battery.Id[1];
-        Manufacturer       = $battery.BatteryReport.Batteries.Battery.Manufacturer[1];
-        ManufactureDate    = $battery.BatteryReport.Batteries.Battery.ManufactureDate[1];
-        SerialNumber       = $battery.BatteryReport.Batteries.Battery.SerialNumber[1];
         DesignCapacity     = $battery.BatteryReport.Batteries.Battery.DesignCapacity[1];
         FullChargeCapacity = $battery.BatteryReport.Batteries.Battery.FullChargeCapacity[1];
         MaxCapacity        = $battery.BatteryReport.Batteries.Battery.FullChargeCapacity[1] / $battery.BatteryReport.Batteries.Battery.DesignCapacity[1] * 100
         FailureCapacity    = 100 - ($battery.BatteryReport.Batteries.Battery.FullChargeCapacity[1] / $battery.BatteryReport.Batteries.Battery.DesignCapacity[1] * 100);
-        CycleCount         = $battery.BatteryReport.Batteries.Battery.CycleCount[1];
     }
 
     Write-Host ""
