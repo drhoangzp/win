@@ -2,13 +2,17 @@
 $systemInfo = Get-CimInstance Win32_OperatingSystem
 $bios = Get-WmiObject -Class Win32_BIOS
 
+# Lấy thời gian hiện tại
+$currentTime = Get-Date
+
+# Hiển thị thời gian
+Write-Host ""
+Write-Host "Current Time: $($currentTime.ToString('yyyy-MM-dd HH:mm:ss'))"
 
 # Lấy thông tin hệ thống bằng Get-CimInstance
 $computerSystem = Get-CimInstance Win32_ComputerSystem
 
 # Hiển thị thông tin hệ thống
-Write-Host ""
-Write-Host "Time: $($health.Time)"
 Write-Host ""
 Write-Host "Hostname: $($computerSystem.Name)"
 Write-Host ""
@@ -33,7 +37,7 @@ $physicalMemory | ForEach-Object {
     
     $_ | Select-Object DeviceLocator, PartNumber, @{Name='Capacity'; Expression={$capacityText}}, Speed, @{Name='MemoryType'; Expression={$memoryTypeText}}
 } | Format-Table
-Write-Host "ROM"
+Write-Host "ROM :"
 
 # Lấy thông tin về ổ cứng
 $diskDrive = Get-CimInstance Win32_DiskDrive
