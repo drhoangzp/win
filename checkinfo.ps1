@@ -3,6 +3,9 @@ $systemInfo = Get-CimInstance Win32_OperatingSystem
 $bios = Get-WmiObject -Class Win32_BIOS
 
 # Hiển thị thông tin hệ thống
+Write-Host ""
+Write-Host "Time: $($health.Time)"
+Write-Host ""
 Write-Host "Serial Number: $($bios.SerialNumber)"
 Write-Host "Operating System: $($systemInfo.Caption)"
 
