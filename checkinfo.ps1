@@ -22,6 +22,19 @@ Write-Host "Serial Number: $($bios.SerialNumber)"
 Write-Host ""
 Write-Host "Operating System: $($systemInfo.Caption)"
 Write-Host ""
+# Lấy thông tin về hệ thống
+$operatingSystem = Get-CimInstance Win32_OperatingSystem
+
+# Hiển thị thông tin về Registered Owner và Registered Organization
+Write-Host "Registered Owner: $($operatingSystem.RegisteredUser)"
+Write-Host "Registered Organization: $($operatingSystem.Organization)"
+
+Write-Host ""
+# Lấy thông tin về BIOS
+$BIOS = Get-CimInstance Win32_BIOS
+
+# Hiển thị thông tin về BIOS
+Write-Host "BIOS Version: $($BIOS.Version)"
 Write-Host ""
 Write-Host "RAM :"
 # Lấy thông tin về bộ nhớ vật lý
