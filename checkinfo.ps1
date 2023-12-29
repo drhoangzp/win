@@ -66,6 +66,33 @@ $processor | ForEach-Object {
     $_ | Select-Object @{Name='Processor Name'; Expression={$processorName}}, @{Name='Cores'; Expression={$numberOfCores}}, @{Name='Threads'; Expression={$numberOfLogicalProcessors}}
 } | Format-Table
 
+# Lấy thông tin về card mạng có địa chỉ IP
+$networkAdapters = Get-CimInstance Win32_NetworkAdapterConfiguration | Where-Object { $_.IPAddress -ne $null }
+
+# Hiển thị thông tin về card mạng trong một bảng
+$networkAdapters | ForEach-Object {
+    $adapterName = $_.Description
+    $adapterType = $_.Caption
+
+    # Lấy địa chỉ IPv4 và IPv6 (nếu có)
+    $ipv4Address = $_.IPAddress | Where-Object { $_ -like '*.*.*.*' }
+    $ipv6Address = $_.IPAddress | Where-Object { $_ -like '*:*' }
+
+    Write-Host "Network Adapter:"
+    Write-Host "  Adapter Name: $($adapterName)"
+    Write-Host "  Adapter Type: $($adapterType)"
+
+    # Hiển thị thông tin IPv4
+    if ($ipv4Address -ne $null) {
+        Write-Host "  IPv4 Address: $($ipv4Address -join ', ')"
+    }
+
+    # Hiển thị thông tin IPv6
+    if ($ipv6Address -ne $null) {
+        Write-Host "  IPv6 Address: $($ipv6Address -join ', ')"
+    }
+} | Format-Table
+
 # Lấy thông tin pin
 powercfg /batteryreport /xml /output batteryreport.xml
 
