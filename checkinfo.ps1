@@ -126,6 +126,16 @@ $networkAdapters | ForEach-Object {
         Write-Host "  IPv6 Address: $($ipv6Address -join ', ')"
     }
 } | Format-Table
+# Chạy lệnh netsh và lọc thông tin về Radio types supported
+$netshResult = netsh wlan show driver | Select-String "Radio types supported"
+
+# Hiển thị thông tin về Radio types supported
+if ($netshResult) {
+    $radioTypesSupported = $netshResult -replace '^\s*Radio types supported\s*:\s*', ''
+    Write-Host "  Radio types supported: $($radioTypesSupported)"
+} else {
+    Write-Host ""
+}
 
 # Lấy thông tin pin
 powercfg /batteryreport /xml /output batteryreport.xml
