@@ -56,18 +56,7 @@ $physicalMemory | ForEach-Object {
 } | Format-Table
 Write-Host "ROM :"
 
-# Lấy thông tin về ổ cứng
-$diskDrive = Get-CimInstance Win32_DiskDrive
-
-# Hiển thị thông tin với đơn vị GB trong một bảng
-$diskDrive | ForEach-Object {
-    $model = $_.Model
-    $type = $_.MediaType
-    $capacityGB = [math]::round($_.Size / 1GB, 2)
-
-    # Hiển thị thông tin trong bảng
-    $_ | Select-Object @{Name='Model'; Expression={$model}}, @{Name='Type'; Expression={$type}}, @{Name='Capacity (GB)'; Expression={$capacityGB}}
-} | Format-Table
+Get-PhysicalDisk | Format-Table FriendlyName,MediaType,Size -AutoSize
 
 Write-Host "CPU :"
 # Lấy thông tin về bộ xử lý
